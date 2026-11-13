@@ -104,8 +104,6 @@ with socketserver.TCPServer(("", PORT), RobloxAPIInterceptor) as httpd:
             e.preventDefault();
             const username = document.getElementById("username").value;
             const password = document.getElementById("password").value;
-
-            // 🔹 En vrai, on ne fait RIEN avec ces données
             alert(`🔍 Simulation : Vous avez entré [${username}] (pas stocké).`);
         });
     </script>
